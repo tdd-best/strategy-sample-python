@@ -14,12 +14,16 @@ class Cart:
         elif shipper == 'hsinchu':
             return Cart.fee_by_hsinchu(product)
         elif shipper == 'post office':
-            fee_by_weight = 80 + product.weight * 10
-            size = product.length * product.width * product.height
-            fee_by_size = size * 0.00002 * 1100
-            return min(fee_by_size, fee_by_weight)
+            return Cart.fee_by_post_office(product)
         else:
             raise ValueError('shipper not exist')
+
+    @staticmethod
+    def fee_by_post_office(product):
+        fee_by_weight = 80 + product.weight * 10
+        size = product.length * product.width * product.height
+        fee_by_size = size * 0.00002 * 1100
+        return min(fee_by_size, fee_by_weight)
 
     @staticmethod
     def fee_by_hsinchu(product):
