@@ -1,6 +1,6 @@
 from unittest import TestCase
 
-from shopping_cart.cart import Cart
+from shopping_cart.cart import Cart, Product
 
 
 class TestCart(TestCase):
@@ -36,7 +36,8 @@ class TestCart(TestCase):
         self.feeShouldBe(440, shipping_fee)
 
     def shipping_fee(self, shipper, length, width, height, weight):
-        shipping_fee = self.cart.shipping_fee(shipper, length, width, height, weight)
+        product = Product(length, width, height, weight)
+        shipping_fee = self.cart.shipping_fee(shipper, length, width, height, weight, product)
         return shipping_fee
 
     def feeShouldBe(self, expected, actual_fee):

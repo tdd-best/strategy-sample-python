@@ -8,8 +8,7 @@ class Product(object):
 
 class Cart:
     @staticmethod
-    def shipping_fee(shipper, t_length, t_width, t_height, t_weight):
-        product = Product(t_length, t_width, t_height, t_weight)
+    def shipping_fee(shipper, length, width, height, weight, product):
         if shipper == 'black cat':
             if product.weight > 20:
                 return 500
