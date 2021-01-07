@@ -37,7 +37,7 @@ class TestCart(TestCase):
 
     def shipping_fee(self, shipper, length, width, height, weight):
         product = Product(length, width, height, weight)
-        shipping_fee = self.cart.shipping_fee(shipper, length, width, height, weight, product)
+        shipping_fee = self.cart.shipping_fee(shipper, product)
         return shipping_fee
 
     def feeShouldBe(self, expected, actual_fee):
