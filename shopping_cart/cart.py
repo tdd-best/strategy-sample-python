@@ -7,14 +7,16 @@ class Product(object):
 
 
 class Cart:
-    @staticmethod
-    def shipping_fee(shipper, product):
-        if shipper == 'black cat':
-            return Cart.fee_by_black_cat(product)
-        elif shipper == 'hsinchu':
-            return Cart.fee_by_hsinchu(product)
-        elif shipper == 'post office':
-            return Cart.fee_by_post_office(product)
+    def __init__(self):
+        self.shipping_fee_funcs = {
+            'black cat': Cart.fee_by_black_cat,
+            'hsinchu': Cart.fee_by_hsinchu,
+            'post office': Cart.fee_by_post_office,
+        }
+
+    def shipping_fee(self, shipper, product):
+        if shipper in self.shipping_fee_funcs:
+            return self.shipping_fee_funcs[shipper](product)
         else:
             raise ValueError('shipper not exist')
 
