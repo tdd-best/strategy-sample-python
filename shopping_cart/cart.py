@@ -1,6 +1,19 @@
+class Product(object):
+    def __init__(self, length, width, height, weight) -> None:
+        self.weight = weight
+        self.height = height
+        self.width = width
+        self.length = length
+
+
 class Cart:
     @staticmethod
     def shipping_fee(shipper, length, width, height, weight):
+        product = Product(length, width, height, weight)
+        length = product.length
+        width = product.width
+        height = product.height
+        weight = product.weight
         if shipper == 'black cat':
             if weight > 20:
                 return 500
