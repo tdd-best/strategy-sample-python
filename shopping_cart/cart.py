@@ -10,10 +10,7 @@ class Cart:
     @staticmethod
     def shipping_fee(shipper, product):
         if shipper == 'black cat':
-            if product.weight > 20:
-                return 500
-            else:
-                return 100 + product.weight * 10
+            return Cart.fee_by_black_cat(product)
         elif shipper == 'hsinchu':
             size = product.length * product.width * product.height
             if product.length > 100 or product.width > 100 or product.height > 100:
@@ -27,3 +24,10 @@ class Cart:
             return min(fee_by_size, fee_by_weight)
         else:
             raise ValueError('shipper not exist')
+
+    @staticmethod
+    def fee_by_black_cat(product):
+        if product.weight > 20:
+            return 500
+        else:
+            return 100 + product.weight * 10
