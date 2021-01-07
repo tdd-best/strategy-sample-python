@@ -8,26 +8,22 @@ class Product(object):
 
 class Cart:
     @staticmethod
-    def shipping_fee(shipper, length, width, height, weight):
-        product = Product(length, width, height, weight)
-        length = product.length
-        width = product.width
-        height = product.height
-        weight = product.weight
+    def shipping_fee(shipper, t_length, t_width, t_height, t_weight):
+        product = Product(t_length, t_width, t_height, t_weight)
         if shipper == 'black cat':
-            if weight > 20:
+            if product.weight > 20:
                 return 500
             else:
-                return 100 + weight * 10
+                return 100 + product.weight * 10
         elif shipper == 'hsinchu':
-            size = length * width * height
-            if length > 100 or width > 100 or height > 100:
+            size = product.length * product.width * product.height
+            if product.length > 100 or product.width > 100 or product.height > 100:
                 return size * 0.00002 * 1100 + 500
             else:
                 return size * 0.00002 * 1200
         elif shipper == 'post office':
-            fee_by_weight = 80 + weight * 10
-            size = length * width * height
+            fee_by_weight = 80 + product.weight * 10
+            size = product.length * product.width * product.height
             fee_by_size = size * 0.00002 * 1100
             return min(fee_by_size, fee_by_weight)
         else:
